@@ -27,6 +27,11 @@
             color: #fff;
             font-size: 25px;
         }
+
+        #authors {
+            font-size: small;
+            font-style: italic;
+        }
         #generate-button {
             margin-top: 20px;
             padding: 10px 20px;
@@ -42,22 +47,16 @@
 <body>
     <div id="quotecontainer">
         <p id="quote">Loading... </p>
-        <p><button id="generate-button"> Generate New Quote </button></p>
+        <span id = "authors"></span>
+        <p><button id = "generate-button"> Generate New Quote </button></p>
        
     </div>
     
     <script>
+
         // JavaScript code goes here
-        let content = ["“Innovation distinguishes between a leader and a follower.-Steve Jobs, Apple co-founder",
-        "“Do not follow where the path may lead. Go instead where there is no path and leave a trail.-Ralph Waldo Emerson", "“The very essence of leadership is that you have to have vision. You can't blow an uncertain trumpet.-Theodore M. Hesburgh", "“You gain strength, courage and confidence by every experience in which you really stop to look fear in the face. You must do the thing you think you cannot do.-Eleanor Roosevelt", "“In matters of style, swim with the current; in matters of principle, stand like a rock.-Thomas Jefferson",
-"“Never doubt that a small group of thoughtful, concerned citizens can change the world. Indeed it is the only thing that ever has. -Margeret Mead",
-"“A genuine leader is not a searcher for consensus but a molder of consensus.-Martin Luther King Jr.",
-"“It is not the strongest of the species that survive, nor the most intelligent, but the one most responsive to change.-Charles Darwin","Leaders grasp nettles.-David Ogilvy", "“I start with the premise that the function of leadership is to produce more leaders, not more followers.-Ralph Nader”",
-"“A good objective of leadership is to help those who are doing poorly to do well and to help those who are doing well to do even better.-Jim Rohn",
-"“Leaders instill in their people a hope for success and a belief in themselves. Positive leaders empower people to accomplish their goals.-Unknown",
-"“If your actions inspire others to dream more, learn more, do more and become more, you are a leader.-John Quincy Adams","“A great person attracts great people and knows how to hold them together.-Johann Wolfgang Von Goethe",
-"“Leadership is the art of giving people a platform for spreading ideas that work.-Seth Godin",
-"“A leader is best when people barely know he exists. When his work is done, his aim fulfilled, they will say: we did it ourselves.-Lao Tzu", "The pessimist complains about the wind. The optimist expects it to change. The leader adjusts the sails.-John Maxwell”", "Leadership and learning are indispensable to each other.-John F. Kennedy", "Wise leaders generally have wise counselors because it takes a wise person themselves to distinguish them.-Diogenes of Sinope", "The mediocre teacher tells. The good teacher explains. The superior teacher demonstrates. The great teacher inspires.-William Arthur Ward", "No man will make a great leader who wants to do it all himself, or to get all the credit for doing it.-Andrew Carnegie","Anyone can hold the helm when the sea is calm.-Publilius Syrus", "A good leader takes a little more than his share of the blame, a little less than his share of the credit.-Arnold Glasow", "“The most dangerous leadership myth is that leaders are born-that there is a genetic factor to leadership. This myth asserts that people simply either have certain charismatic qualities or not. That’s nonsense; in fact, the opposite is true. Leaders are made rather than born.-Warren Bennis", "“Mastery is great, but even that is not enough. You have to be able to change course without a bead of sweat, or remorse.-Tom Peters."];
+        let content = [["“Innovation distinguishes between a leader and a follower.","Steve Jobs, Apple co-founder"],
+        ["“Do not follow where the path may lead. Go instead where there is no path and leave a trail.","-Ralph Waldo Emerson"], ["“The very essence of leadership is that you have to have vision. You can't blow an uncertain trumpet.","-Theodore M. Hesburgh"], ["“You gain strength, courage and confidence by every experience in which you really stop to look fear in the face. You must do the thing you think you cannot do.","-Eleanor Roosevelt"], ["“In matters of style, swim with the current; in matters of principle, stand like a rock.-Thomas Jefferson"],["“Never doubt that a small group of thoughtful, concerned citizens can change the world. Indeed it is the only thing that ever has."," -Margeret Mead"],["“A genuine leader is not a searcher for consensus but a molder of consensus.","-Martin Luther King Jr."],["“It is not the strongest of the species that survive, nor the most intelligent, but the one most responsive to change.","-Charles Darwin"],["Leaders grasp nettles.","-David Ogilvy", "“I start with the premise that the function of leadership is to produce more leaders, not more followers.","-Ralph Nader”"],["“A good objective of leadership is to help those who are doing poorly to do well and to help those who are doing well to do even better.","-Jim Rohn"],["“Leaders instill in their people a hope for success and a belief in themselves. Positive leaders empower people to accomplish their goals.","-Unknown"],["“If your actions inspire others to dream more, learn more, do more and become more, you are a leader.","-John Quincy Adams","“A great person attracts great people and knows how to hold them together.","-Johann Wolfgang Von Goethe"],["“Leadership is the art of giving people a platform for spreading ideas that work.","-Seth Godin"],["“A leader is best when people barely know he exists. When his work is done, his aim fulfilled, they will say: we did it ourselves.","-Lao Tzu"], ["The pessimist complains about the wind. The optimist expects it to change. The leader adjusts the sails.","-John Maxwell”"], ["Leadership and learning are indispensable to each other.","-John F. Kennedy"], ["Wise leaders generally have wise counselors because it takes a wise person themselves to distinguish them.","-Diogenes of Sinope"], ["The mediocre teacher tells. The good teacher explains. The superior teacher demonstrates. The great teacher inspires.","-William Arthur Ward"], ["No man will make a great leader who wants to do it all himself, or to get all the credit for doing it.","-Andrew Carnegie"],["Anyone can hold the helm when the sea is calm.","-Publilius Syrus"], ["A good leader takes a little more than his share of the blame, a little less than his share of the credit.","-Arnold Glasow"], ["“The most dangerous leadership myth is that leaders are born-that there is a genetic factor to leadership. This myth asserts that people simply either have certain charismatic qualities or not. That’s nonsense; in fact, the opposite is true. Leaders are made rather than born.","-Warren Bennis"], ["“Mastery is great, but even that is not enough. You have to be able to change course without a bead of sweat, or remorse.","-Tom Peters."]];
 
 
 let Kolors = [ "#00004d", "#cc3300", "#b3003b","#669900", "#0066ff", "#006600", "#008080"]
@@ -65,6 +64,7 @@ let Kolors = [ "#00004d", "#cc3300", "#b3003b","#669900", "#0066ff", "#006600", 
 
 
      let result = document.getElementById("quote");
+     let result2 = document.getElementById("authors")
      let btn= document.getElementById("generate-button");
      let randomQuotes = Math.floor(Math.random() * 19) +1;
      let randomColors = Math.floor(Math.random()* 6) +1
@@ -82,7 +82,8 @@ let Kolors = [ "#00004d", "#cc3300", "#b3003b","#669900", "#0066ff", "#006600", 
     
     for (let Qcount = 0; Qcount < content.length; Qcount++ );{
            const element = content[randomQuotes];
-           quote.innerHTML = element;
+           quote.innerHTML = element[0];
+           result2.innerHTML = element[1];
 
     }
     for ( let Kcount = 0; Kcount < Kolors.length; Kcount++);{
